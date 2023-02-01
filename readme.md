@@ -5,6 +5,7 @@ A collection of abstract data types in the C programming language
 ### Abstract Data Types
 
 -   [Linked-List](src/list.h)
+-   [Doubly Linked-List](src/dlist.h)
 
 ### Build Instructions
 
