@@ -1,6 +1,6 @@
 /**
 @file list.h
-
+@brief
 Definitions of a generic linked-list ADT
 
 @note
