@@ -54,16 +54,18 @@ int list_insert_next(List *list, List_Element *element, const void *data)
 	if (element == NULL) {
 		// Insert at head of the linked-list
 
-		if (list_size(list) == 0)
-		list->tail = new_element;
+		if (list_size(list) == 0) {
+			list->tail = new_element;
+		}
 
 		new_element->next = list->head;
 		list->head = new_element;
 	} else {
 		// Insert somewhere other than the head
 
-		if (element->next == NULL)
-		list->tail = new_element;
+		if (element->next == NULL) {
+			list->tail = new_element;
+		}
 
 		new_element->next = element->next;
 		element->next = new_element;
