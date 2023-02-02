@@ -6,6 +6,7 @@ A collection of abstract data types in the C programming language
 
 -   [Linked-List](src/list.h)
 -   [Doubly Linked-List](src/dlist.h)
+-   [Circular Linked-List](src/clist.h)
 
 ### Build Instructions
 
