@@ -163,7 +163,7 @@ int dlist_remove(DList *list, DList_Element *element, void **data)
 	}
 
 	// Free storage allocated by the abstract datatype
-	free (element);
+	free(element);
 
 	// Adjust the size of the list
 	list->size--;

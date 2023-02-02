@@ -113,7 +113,7 @@ int list_remove_next(List *list, List_Element *element, void **data)
 	}
 
 	// Free storage allocated by the abstract datatype
-	free (old_element);
+	free(old_element);
 
 	// Adjust the size of the list
 	list->size--;
