@@ -84,8 +84,7 @@ int clist_remove_next(CList *list, CList_Element *element, void **data)
 
 		old_element = element->next;
 		list->head = NULL;
-	}
-	else {
+	} else {
 		// Remove an element other than the last element
 
 		old_element = element->next;
