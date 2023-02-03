@@ -110,5 +110,65 @@ Test(list_tests, insert_twice_at_tail)
 	cr_expect(list_data(list_tail(&list)) == item3, "tail should be the third item inserted");
 }
 
-// TODO -- remove at head
-// TODO -- remove after head
+Test(list_tests, remove_at_head)
+{
+	// Give out items some values
+	*item1 = 1;
+	*item2 = 2;
+
+	// Pointer to removed item
+	void* removed;
+
+	cr_expect(list_insert_next(&list, NULL, item1) == 0, "insert into empty list should return 0");
+	cr_expect(list_size(&list) == 1, "list's size should be 1");
+	cr_expect(list_insert_next(&list, NULL, item2) == 0, "insert after head should return 0");
+	cr_expect(list_size(&list) == 2, "list's size should be 2");
+	cr_expect(list_remove_next(&list, NULL, &removed) == 0, "remove at head should return 0");
+	cr_expect(list_size(&list) == 1, "list's size should be 1");
+	cr_expect(list_data(list_head(&list)) == item1, "head should be the first item inserted");
+	cr_expect(removed == item2, "removed item should point to the second item inserted");
+}
+
+Test(list_tests, remove_at_tail)
+{
+	// Give out items some values
+	*item1 = 1;
+	*item2 = 2;
+
+	// Pointer to removed item
+	void* removed;
+
+	cr_expect(list_insert_next(&list, NULL, item1) == 0, "insert into empty list should return 0");
+	cr_expect(list_size(&list) == 1, "list's size should be 1");
+	cr_expect(list_insert_next(&list, NULL, item2) == 0, "insert after head should return 0");
+	cr_expect(list_size(&list) == 2, "list's size should be 2");
+	cr_expect(list_remove_next(&list, list_head(&list), &removed) == 0, "remove at head should return 0");
+	cr_expect(list_size(&list) == 1, "list's size should be 1");
+	cr_expect(list_data(list_head(&list)) == item2, "head should be the second item inserted");
+	cr_expect(removed == item1, "removed item should point to the first item inserted");
+}
+
+Test(list_tests, add_and_remove)
+{
+	// Give out items some values
+	*item1 = 1;
+	*item2 = 2;
+
+	// Pointer to removed item
+	void* removed;
+
+	cr_expect(list_insert_next(&list, NULL, item1) == 0, "insert into empty list should return 0");
+	cr_expect(list_size(&list) == 1, "list's size should be 1");
+	cr_expect(list_insert_next(&list, NULL, item2) == 0, "insert after head should return 0");
+	cr_expect(list_size(&list) == 2, "list's size should be 2");
+
+	cr_expect(list_remove_next(&list, NULL, &removed) == 0, "remove at head should return 0");
+	cr_expect(list_size(&list) == 1, "list's size should be 1");
+	cr_expect(list_data(list_head(&list)) == item1, "head should be the first item inserted");
+	cr_expect(removed == item2, "removed item should point to the second item inserted");
+
+	cr_expect(list_remove_next(&list, NULL, &removed) == 0, "remove at head should return 0");
+	cr_expect(list_size(&list) == 0, "list's size should be 0");
+	cr_expect(list_head(&list) == NULL, "head should be NULL");
+	cr_expect(removed == item1, "removed item should point to the first item inserted");
+}
