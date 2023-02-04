@@ -80,3 +80,43 @@ Test(list_tests, insert_twice_at_head)
 	element = clist_next(element);
 	cr_expect(clist_data(element) == item1, "element should be the first item inserted");
 }
+
+Test(list_tests, insert_in_between)
+{
+	// Give out items some values
+	*item1 = 1;
+	*item2 = 2;
+	*item3 = 3;
+
+	CList_Element* element = clist_head(&list);
+	cr_expect(clist_head(&list) == NULL, "empty list's head should be NULL");
+	cr_expect(element == NULL, "empty list's head should be NULL");
+
+	cr_expect(clist_insert_next(&list, element, item1) == 0, "insert into empty list should return 0");
+	cr_expect(clist_size(&list) == 1, "list's size should be 1");
+	cr_expect(clist_head(&list) != NULL, "list's head should be not NULL");
+
+	element = clist_head(&list);
+	cr_expect(clist_insert_next(&list, element, item2) == 0, "insert after head should return 0");
+	cr_expect(clist_size(&list) == 2, "list's size should be 2");
+
+	element = clist_head(&list);
+	element = clist_next(element);
+	cr_expect(clist_insert_next(&list, element, item3) == 0, "insert after second element should return 0");
+	cr_expect(clist_size(&list) == 3, "list's size should be 3");
+
+	element = clist_head(&list);
+	cr_expect(clist_next(element) != NULL, "next should be not NULL for circular list");
+	cr_expect(clist_data(element) == item1, "element should be the first item inserted");
+
+	element = clist_next(element);
+	cr_expect(clist_next(element) != NULL, "next should be not NULL for circular list");
+	cr_expect(clist_data(element) == item2, "element should be the second item inserted");
+
+	element = clist_next(element);
+	cr_expect(clist_next(element) != NULL, "next should be not NULL for circular list");
+	cr_expect(clist_data(element) == item3, "element should be the third item inserted");
+
+	element = clist_next(element);
+	cr_expect(clist_data(element) == item1, "element should be the first item inserted");
+}
