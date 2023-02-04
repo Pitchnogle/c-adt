@@ -33,4 +33,4 @@ test: $(SRCS) $(TEST)/bin $(TESTBINS)
 	for test in $(TESTBINS) ; do ./$$test ; done
 
 clean:
-	$(RM) $(OBJ)/*
+	$(RM) $(OBJ)/* $(TESTBINS)
